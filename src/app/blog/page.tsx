@@ -1,141 +1,98 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import { allPosts } from "content-collections";
-import Link from "next/link";
 import type { Metadata } from "next";
-import { paginate, normalizePage } from "@/lib/pagination";
-import { ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Thoughts on software development, life, and more.",
+  description: "My thoughts on AI, systems, and engineering — published on Medium.",
   openGraph: {
     title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    description: "My thoughts on AI, systems, and engineering — published on Medium.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    description: "My thoughts on AI, systems, and engineering — published on Medium.",
   },
 };
 
-const PAGE_SIZE = 5;
 const BLUR_FADE_DELAY = 0.04;
+// every medium article is present in this array , u can append at last to make it appear in the blog page
+const articles = [
+  {
+    title: "All About PCA",
+    description:
+      "A deep dive into Principal Component Analysis — the intuition, the math, and why it matters.",
+    href: "https://medium.com/@rakshithml/all-about-pca-1fc63e841191",
+  },
+  {
+    title: "The Shift from REST to gRPC",
+    description:
+      "How modern systems really communicate — comparing REST and gRPC and when to pick which.",
+    href: "https://medium.com/@rakshithml/the-shift-from-rest-to-grpc-how-modern-systems-really-communicate-d32ba28e33d0",
+  },
+  {
+    title: "The Big Illusion of Deletion",
+    description:
+      "Where do files really go when you hit delete? Spoiler: they don't disappear.",
+    href: "https://medium.com/@rakshithml/the-big-illusion-of-deletion-where-do-files-really-go-65e2d7299f04",
+  },
+];
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}) {
-  const { page: pageParam } = await searchParams;
-
-  const posts = allPosts;
-  const sortedPosts = [...posts].sort((a, b) => {
-    if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
-      return -1;
-    }
-    return 1;
-  });
-
-  const totalPages = Math.ceil(sortedPosts.length / PAGE_SIZE);
-  const currentPage = normalizePage(pageParam, totalPages);
-  const { items: paginatedPosts, pagination } = paginate(sortedPosts, {
-    page: currentPage,
-    pageSize: PAGE_SIZE,
-  });
-
+export default function BlogPage() {
   return (
     <section id="blog">
       <BlurFade delay={BLUR_FADE_DELAY}>
-        <h1 className="text-2xl font-semibold tracking-tight mb-2">Blog <span className="ml-1 bg-card border border-border rounded-md px-2 py-1 text-muted-foreground text-sm">{sortedPosts.length} posts</span></h1>
+        <h1 className="text-2xl font-semibold tracking-tight mb-2">
+          Blog{" "}
+          <span className="ml-1 bg-card border border-border rounded-md px-2 py-1 text-muted-foreground text-sm">
+            {articles.length} articles
+          </span>
+        </h1>
         <p className="text-sm text-muted-foreground mb-8">
-          My thoughts on software development, life, and more.
+          I write on Medium and here are my latest articles.
         </p>
       </BlurFade>
 
-      {paginatedPosts.length > 0 ? (
-        <>
-          <BlurFade delay={BLUR_FADE_DELAY * 2}>
-            <div className="flex flex-col gap-5">
-              {paginatedPosts.map((post, id) => {
-                const slug = post._meta.path.replace(/\.mdx$/, "");
-                const indexNumber = (pagination.page - 1) * PAGE_SIZE + id + 1;
-                return (
-                  <BlurFade delay={BLUR_FADE_DELAY * 3 + id * 0.05} key={slug}>
-                    <Link
-                      className="flex items-start gap-x-2 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      href={`/blog/${slug}`}
-                    >
-                      <span className="text-xs font-mono tabular-nums font-medium mt-[5px]">
-                        {String(indexNumber).padStart(2, "0")}.
-                      </span>
-                      <div className="flex flex-col gap-y-2 flex-1">
-                        <p className="tracking-tight text-lg font-medium">
-                          <span className="group-hover:text-foreground transition-colors">
-                            {post.title}
-                            <ChevronRight
-                              className="ml-1 inline-block size-4 stroke-3 text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
-                              aria-hidden
-                            />
-                          </span>
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {post.publishedAt}
-                        </p>
-                      </div>
-                    </Link>
-                  </BlurFade>
-                );
-              })}
-            </div>
-          </BlurFade>
+      <BlurFade delay={BLUR_FADE_DELAY * 2}>
+        <div className="flex flex-col gap-4">
+          {articles.map((article, i) => (
+            <BlurFade delay={BLUR_FADE_DELAY * 3 + i * 0.05} key={article.href}>
+              <a
+                href={article.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-x-3 rounded-xl border border-border p-4 transition-colors hover:bg-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                {/* Medium icon */}
+                <svg
+                  className="mt-0.5 size-5 flex-none text-muted-foreground"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12Zm7.42 0c0 3.54-1.51 6.42-3.38 6.42s-3.39-2.88-3.39-6.42 1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42ZM24 12c0 3.17-.53 5.75-1.19 5.75S21.62 15.17 21.62 12s.53-5.75 1.19-5.75S24 8.83 24 12Z" />
+                </svg>
 
-          {/* Pagination Controls */}
-          {pagination.totalPages > 1 && (
-            <BlurFade delay={BLUR_FADE_DELAY * 4}>
-              <div className="flex gap-3 flex-row items-center justify-between mt-8">
-                <div className="text-sm text-muted-foreground">
-                  Page {pagination.page} of {pagination.totalPages}
-                </div>
-                <div className="flex gap-2 sm:justify-end">
-                  {pagination.hasPreviousPage ? (
-                    <Link
-                      href={`/blog?page=${pagination.page - 1}`}
-                      className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                      Previous
-                    </Link>
-                  ) : (
-                    <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Previous
+                <div className="flex flex-col gap-y-1 flex-1 min-w-0">
+                  <p className="tracking-tight text-lg font-medium leading-snug">
+                    <span className="group-hover:text-foreground transition-colors">
+                      {article.title}
+                      <ArrowUpRight
+                        className="ml-1 inline-block size-4 stroke-[2.5] text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+                        aria-hidden
+                      />
                     </span>
-                  )}
-                  {pagination.hasNextPage ? (
-                    <Link
-                      href={`/blog?page=${pagination.page + 1}`}
-                      className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                      Next
-                    </Link>
-                  ) : (
-                    <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Next
-                    </span>
-                  )}
+                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {article.description}
+                  </p>
                 </div>
-              </div>
+              </a>
             </BlurFade>
-          )}
-        </>
-      ) : (
-        <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <div className="flex flex-col items-center justify-center py-12 px-4 border border-border rounded-xl">
-            <p className="text-muted-foreground text-center">
-              No blog posts yet. Check back soon!
-            </p>
-          </div>
-        </BlurFade>
-      )}
+          ))}
+        </div>
+      </BlurFade>
     </section>
   );
 }
