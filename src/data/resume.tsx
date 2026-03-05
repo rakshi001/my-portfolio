@@ -14,6 +14,7 @@ import { ExpressIcon } from "@/components/ui/svgs/expressIcon";
 import { OpenAIIcon } from "@/components/ui/svgs/openAIIcon";
 import { HuggingFaceIcon } from "@/components/ui/svgs/huggingFaceIcon";
 import { FinetuneIcon } from "@/components/ui/svgs/finetuneIcon";
+import { LLMEvalsIcon } from "@/components/ui/svgs/llmEvalsIcon";
 import { EmbeddingIcon } from "@/components/ui/svgs/embeddingIcon";
 import { RAGIcon } from "@/components/ui/svgs/ragIcon";
 import { LangChainIcon } from "@/components/ui/svgs/langChainIcon";
@@ -44,6 +45,7 @@ export const DATA = {
     { name: "LangChain", icon: LangChainIcon },
     { name: "LangGraph", icon: LangGraphIcon },
     { name: "Model Finetuning", icon: FinetuneIcon },
+    { name: "LLM Evals", icon: LLMEvalsIcon },
     { name: "Vector Embeddings", icon: EmbeddingIcon },
     { name: "Hugging Face", icon: HuggingFaceIcon },
     { name: "Ollama", icon: OllamaIcon },
@@ -63,7 +65,7 @@ export const DATA = {
     { name: "Postgres", icon: Postgresql },
     { name: "Vector Databases", icon: VectorDBIcon },
     { name: "Redis", icon: RedisIcon },
-    { name: "MongoDB", icon: MongoIcon },
+    // { name: "MongoDB", icon: MongoIcon },
     { name: "Graph DB", icon: Neo4jIcon },
 
     // --- Infrastructure & DevOps ---
