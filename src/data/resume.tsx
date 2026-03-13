@@ -79,7 +79,7 @@ export const DATA = {
     social: {
       GitHub: {
         name: "GitHub",
-        url: "https://github.com/rakshi001",
+        url: "https://github.com/rkshith",
         icon: Icons.github,
         navbar: true,
       },
@@ -141,7 +141,7 @@ export const DATA = {
   projects: [
     {
       title: "Mika Code – AI Coding CLI",
-      href: "https://github.com/rakshi001/mika",
+      href: "https://github.com/rkshith/mika",
       dates: "2025",
       active: true,
       description:
@@ -155,7 +155,7 @@ export const DATA = {
       links: [
         {
           type: "GitHub",
-          href: "https://github.com/rakshi001/mika",
+          href: "https://github.com/rkshith/mika",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -165,7 +165,7 @@ export const DATA = {
 
     {
       title: "Marine Ecosystem Guardian",
-      href: "https://github.com/rakshi001/Marine-Ecosystem-Guardian",
+      href: "https://github.com/rkshith/Marine-Ecosystem-Guardian",
       dates: "2025",
       active: true,
       description:
@@ -179,7 +179,7 @@ export const DATA = {
       links: [
         {
           type: "GitHub",
-          href: "https://github.com/rakshi001/Marine-Ecosystem-Guardian",
+          href: "https://github.com/rkshith/Marine-Ecosystem-Guardian",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -189,7 +189,7 @@ export const DATA = {
 
     {
       title: "Deep Learning Churn Prediction",
-      href: "https://github.com/rakshi001/Churn_prediction",
+      href: "https://github.com/rkshith/Churn_prediction",
       dates: "2025",
       active: true,
       description:
@@ -203,7 +203,7 @@ export const DATA = {
       links: [
         {
           type: "GitHub",
-          href: "https://github.com/rakshi001/Churn_prediction",
+          href: "https://github.com/rkshith/Churn_prediction",
           icon: <Icons.github className="size-3" />,
         },
       ],
