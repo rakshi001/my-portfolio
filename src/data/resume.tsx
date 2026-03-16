@@ -139,6 +139,39 @@ export const DATA = {
     }
   ],
   projects: [
+
+    {
+      title: "FastReact – Knowledge Workspace",
+      href: "https://github.com/rkshith/fast-react",
+      dates: "2026",
+      active: true,
+      description:
+        "Full-stack productivity workspace where users organize notes into projects. Built with React, FastAPI, and PostgreSQL using a layered backend architecture and a fully dockerized development setup.",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Zustand",
+        "FastAPI",
+        "SQLAlchemy",
+        "PostgreSQL",
+        "Docker",
+      ],
+      links: [
+        // {
+        //   type: "Website",
+        //   href: "https://your-live-link.com",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
+        {
+          type: "GitHub",
+          href: "https://github.com/rkshith/fast-react",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+
     {
       title: "Mika Code – AI Coding CLI",
       href: "https://github.com/rkshith/mika",
@@ -159,7 +192,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/mikacode.png",
+      image: "",
       video: "",
     },
 
@@ -183,7 +216,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/marine.png",
+      image: "",
       video: "",
     },
 
@@ -207,8 +240,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/churn.png",
+      image: "",
       video: "",
-    },
-  ]
+    },]
 } as const;
